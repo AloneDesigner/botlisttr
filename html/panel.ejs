@@ -1,0 +1,127 @@
+<%- include('ek/header', {bot, user, path}) %>
+<script type="text/javascript">
+
+</script>
+  <section class="section is-medium is-primary has-text-centered is-long">
+
+<div class="container">
+  <style>
+    h8 {
+  color: white;
+  font-size: 25px;
+  align: center;
+  text-shadow: 2px 2px black;
+  line-height: normal;
+}
+  h8{
+    font-family:Montserrat,Open Sans,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Helvetica Neue,sans-serif
+  }
+    h8[id]{pointer-events:none}h1[id]:before{content:"";height:80px;margin:-80px 0 0}h1[id]:hover:after{opacity:1}h1[id]:after{-webkit-transition:opacity .1s ease-out;transition:opacity .1s ease-out;content:" \1F517";cursor:pointer;opacity:0;font-weight:100;pointer-events:auto
+       }
+        .panelss {
+      background-color: #000;
+      width: 350px;
+      padding: 30px;
+      padding: 25px;
+      border-radius: 10px;
+      margin-bottom: 8px;
+      margin-right: 10px;
+    }
+    </style>
+  
+  <span align="center" style="color: white">
+            <img src="https://cdn.discordapp.com/avatars/<%=user.id%>/<%=user.avatar%>.gif" width="240" height="240" class="d-inline-block align-middle rounded-circle" alt="Kullanıcı Avatar">
+            <br><h1 class="title is-spaced is-size-3-desktop is-size-4-mobile"><%=user.username%></h1>
+    </span><br><br><style type="text/css">
+.alonebutton {
+	background-color:#525453;
+	-webkit-border-top-left-radius:28px;
+	-moz-border-radius-topleft:28px;
+	border-top-left-radius:28px;
+	-webkit-border-top-right-radius:28px;
+	-moz-border-radius-topright:28px;
+	border-top-right-radius:28px;
+	-webkit-border-bottom-right-radius:28px;
+	-moz-border-radius-bottomright:28px;
+	border-bottom-right-radius:28px;
+	-webkit-border-bottom-left-radius:28px;
+	-moz-border-radius-bottomleft:28px;
+	border-bottom-left-radius:28px;
+text-indent:0;
+	border:1px solid #303830;
+	display:inline-block;
+	color:#ffffff;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	font-style:normal;
+height:50px;
+	line-height:50px;
+width:100px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0px #2f6627;
+}.alonebutton:hover {
+	background-color:#363636;
+}.alonebutton:active {
+	position:relative;
+	top:1px;
+}
+    }
+  </style>
+  </section>
+    <br><br><br><br>
+    <br><br><br>
+  <center>
+                    <br><h1 class="title is-spaced is-size-3-desktop is-size-4-mobile" style="color: #000">All Bots</h1>
+
+   <% if (bot.ayar.has('botlar')) { %>
+  <%for(var i = 0; i < 10; i++) { %>
+ <% const sorted = Object.keys(bot.ayar.fetch('botlar')).sort((a, b) => { return (bot.ayar.fetch(`botlar.${b}.oy`) || 0) - (bot.ayar.fetch(`botlar.${a}.oy`) || 0) }) %>
+  <% const top = sorted.splice(0, Object.keys(bot.ayar.fetch('botlar')).length) %>
+  <% const map = top.map(x=>x) %>
+	<% for(var i = 0; i < Object.keys(bot.ayar.fetch('botlar')).length; i++) { %>
+  <% let idd = map[i] %>
+   <% if(bot.ayar.has(`botlar.${idd}.durum`) === true) { %>
+    <%  if (bot.ayar.fetch(`botlar.${idd}.sahipid`) === user.id) { %>
+  <div class="kutucuk">
+    <div class="row no-gutters">
+        <div class="col-md-5">
+          
+        <img data-toggle="tooltip" data-placement="bottom"  title="<%=bot.useful.seg(bot.ayar.fetch(`botlar.${idd}.isim`), 5)%>" src="<%=bot.ayar.fetch(`botlar.${idd}.avatar`)%>" class="card-img-top h-100" style="border-radius: 50%;width: 120px;height: 120px !important;margin: 14px" alt="..." onerror="this.onerror=null;this.src='https://cdn.discordapp.com/attachments/415626207607128076/526891779992322078/sunucuicon.png'">
+        </div>
+        <div class="col-md-7">
+            <div class="card-body">
+            
+
+                      <h5 class="card-title" style="color: white"><%=bot.useful.seg(bot.ayar.fetch(`botlar.${idd}.isim`), 5)%></h5>
+              <h6 class="text-white"><%=bot.ayar.fetch(`botlar.${idd}.kisaaciklama`)%></h6>
+
+            </div>
+        </div>
+      
+    </div>
+       <div class="btn-group">
+        <a class="button is-primary is-outlined is-rounded is-medium" href="https://discordapp.com/oauth2/authorize?client_id=<%=idd%>&scope=bot&permissions=8"><i class="fa fa-link mr-2"></i> Invite</a>
+        </div>
+           <div class="btn-group">
+               <a class="button is-primary is-outlined is-rounded is-medium" href="/bot/<%=idd%>"><i class="fa fa-eye mr-2"></i> View</a>
+            </div>
+</div>
+      <% } %>
+    <% } %>
+   <% } %>
+   <% } %>
+
+   <% } else {%>
+   <center><h5 style="color:#222">
+     Sistemde hiç bot bulunmuyor.
+     </h5></center>
+   <% } %>
+   </div>
+</center>
+
+</div></div></div>
+
+<br><br><br><br><br>
+<% include ./ek/footer %>

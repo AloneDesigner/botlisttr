@@ -1,0 +1,201 @@
+<%- include('ek/header', {bot, user, path}) %>
+<script type="text/javascript">
+var title = "<%=bot.ayar.fetch(`botlar.${id}.isim`)%>";
+document.title = title;
+document.getElementById("botlar").classList.add('active');
+</script>
+  <style>
+    .kutucuk {
+      background-color: #7289DA;
+      width: 350px;
+      padding: 30px;
+      padding: 25px;
+      border-radius: 10px;
+      margin-bottom: 8px;
+      margin-right: 10px;
+      display: inline-block;
+    }
+    h7 {
+  color: white;
+  font-size: 30px;
+  text-shadow: 2px 2px black;
+}
+  h7{
+    font-family:Montserrat,Open Sans,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Helvetica Neue,sans-serif
+  }
+    h7[id]{pointer-events:none}h1[id]:before{content:"";display:block;height:80px;margin:-80px 0 0}h1[id]:hover:after{opacity:1}h1[id]:after{-webkit-transition:opacity .1s ease-out;transition:opacity .1s ease-out;content:" \1F517";cursor:pointer;opacity:0;font-weight:100;pointer-events:auto}
+       .upvote {
+      background-color: #000;
+      width: 120px;
+      color: #fff;
+    }
+        .kutucuk2 {
+      background-color: #7289EA;
+      width: 400px;
+      padding: 30px;
+      padding: 25px;
+      border-radius: 10px;
+    }
+    .roxzaninresmi{
+      border-radius: 10px;
+    }
+    .roxzatextler{
+      font-size: 45px;
+    }
+    .roxzatext{
+      font-size: 35px;
+      overflow: hidden;
+      text-overflow: visible;
+      color: #222;
+      padding: 8px;
+      border-radius: 2px;
+      user-select:none;
+    }
+     .sertifika{
+      border-radius: 10px;
+    }
+  </style>
+  
+  <style type="text/css">
+.alonebutton {
+	background-color:#525453;
+	-webkit-border-top-left-radius:28px;
+	-moz-border-radius-topleft:28px;
+	border-top-left-radius:28px;
+	-webkit-border-top-right-radius:28px;
+	-moz-border-radius-topright:28px;
+	border-top-right-radius:28px;
+	-webkit-border-bottom-right-radius:28px;
+	-moz-border-radius-bottomright:28px;
+	border-bottom-right-radius:28px;
+	-webkit-border-bottom-left-radius:28px;
+	-moz-border-radius-bottomleft:28px;
+	border-bottom-left-radius:28px;
+text-indent:0;
+	border:1px solid #303830;
+	display:inline-block;
+	color:#ffffff;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	font-style:normal;
+height:50px;
+	line-height:50px;
+width:140px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0px #525453;
+}.alonebutton:hover {
+	background-color:#525453;
+  color: gray;
+}.alonebutton:active {
+	position:relative;
+	top:1px;
+}</style>
+  
+  <section class="section is-medium is-primary has-text-centered is-long">
+      <center>
+        <div class="columns is-centered">
+          <div class="column is-three-fifths">
+<div class="post post-single">
+ <%let botdurum = bot.users.filter(user => user.id === bot.ayar.fetch(`botlar.${id}.id`)).map(user => user.presence.status)%>
+
+                  <br>
+                        <br>
+                        <div class="post-thumbnail">
+                            <strong><div class="resim" align="center"><img src="<%=bot.ayar.fetch(`botlar.${id}.avatar`)%>"width="300" height="300" class="botavatar">
+                              <br><br><br>
+                              <h7><%=bot.ayar.fetch(`botlar.${id}.isim`)%>
+                             </h7></strong>
+                              
+                              <span class="botdurum-icon-<%= botdurum %> "><a>   <br></a></span><button class="upvotee" style="cursor:default;"><img src="https://i.hizliresim.com/4TCHyd.png" style="width: 15px"> <%=bot.ayar.fetch(`botlar.${id}.oy`) || 0%></button>
+                        
+
+                          
+                          
+                          
+      <div style="margin-top: 10px;">                    
+        <a href="/bot/<%=id%>/oyver"><button class="sil "><i aria-hidden="true"></i>Upvote</button></a>            
+          <a href="https://discordapp.com/oauth2/authorize?client_id=<%=id%>&scope=bot&permissions=8"><button class="davetet"><i aria-hiddden="true"></i>Invite</button></a>
+        <a href="/bot/<%=id%>/rapor"><button class="davetet"><i aria-hiddden="true"></i>Report</button></a>
+        
+          <% if (user) { %>
+          <% if(bot.ayar.fetch(`botlar.${id}.sahipid`) === user.id) { %>
+        <a href="/kullanici/<%=user.id%>/panel/<%=id%>/duzenle"><button class="duzenle"><i aria-hiddden="true"></i>Edit</button></a>
+          <% } %>
+      
+        <% } %>
+                      
+                </div>  
+  <br>
+          <button class="botprefix" style="cursor:default;"><span class="botprefix-sol">Prefix:</span> <%=bot.ayar.fetch(`botlar.${id}.prefix`)%></button>
+                  <button class="library" style="cursor:default;"><span class="library-sol">Library:</span> <%=bot.ayar.fetch(`botlar.${id}.kutuphane`)%></button>
+                              <button class="botprefix" style="cursor:default;"><span class="botprefix-sol">Owner:</span> <%=bot.ayar.fetch(`botlar.${id}.sahip`)%></button>
+
+          </div>
+  <br>
+  <br>
+          </center>
+  <strong>
+  <div class="uzunaciklama" class="jimbotron" style="color: #000">
+    <% if (bot.ayar.has(`botlar.${id}.uzunaciklama`) || bot.ayar.fetch(`botlar.${id}.uzunaciklama`) !== undefined || bot.ayar.fetch(`botlar.${id}.uzunaciklama`) !== null) { %>
+<% var xx %>
+<% for (var ii = 0; ii < bot.tags.length; ii++) { %>
+  <% if(bot.ayar.fetch(`botlar.${id}.uzunaciklama`).includes(bot.tags[ii]) === false) {%>
+    <% xx = false %>
+ <% } %>
+    <% if (bot.ayar.fetch(`botlar.${id}.uzunaciklama`).includes(bot.tags[ii]) === true) { %>
+     <% x = true %>
+    <% } %>
+<% } %>
+
+<% if (x === false) { %>
+  <p><%=bot.ayar.fetch(`botlar.${id}.uzunaciklama`)%></p>
+<% } else if (x === true) { %>
+    <% let $ = bot.htmll.load(bot.ayar.fetch(`botlar.${id}.uzunaciklama`)) %>
+  <%- $.html() %>
+    <% } %>
+    
+    <% } else { %>
+    <p>Bir Discord botu işte!</p>
+    <% } %>
+    </div>
+                    </div>
+        </div>
+      </div>
+          </strong>
+            <div align="center" style="margin-bottom: 20px;">
+                      <%if(Array.isArray(bot.ayar.fetch(`botlar.${id}.etiket`)) === false) {%>
+                      <span class="tag"><a><%=bot.ayar.fetch(`botlar.${id}.etiket`)%></a></span>
+                      <% } else { %>
+                      <% for(var xx = 0; xx < bot.ayar.fetch(`botlar.${id}.etiket`).length; xx++) {%>
+                      <span class="tag"><a><%=bot.ayar.fetch(`botlar.${id}.etiket`)[xx]%></a></span>
+                    <% }%>
+                      <% }%>
+                   </div>
+    </section>
+    <br> <br> <br> <br> <br>
+<script>
+$(document).ready(function(){
+ $("#ara").keyup(function(){
+    var value = $(this).val().toLowerCase();
+    $(".col-12, .col-sm-6, .col-md-4 .card").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+  //etiket filtresi
+  $("#etiketselect").change(function(){
+    var value = $(this).val();
+    if (value === 'noneFilter') {
+      window.location.reload(true);
+      return
+    }
+    $(".col-12, .col-sm-6, .col-md-4 .card").filter(function(){
+      $(this).toggle($(this).text().indexOf(value) > -1)
+    });
+  })
+  ;
+});
+</script>
+  
+<% include ./ek/footer %>

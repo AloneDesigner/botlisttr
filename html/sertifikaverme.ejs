@@ -1,0 +1,22 @@
+<%- include('ek/header', {bot, user, path}) %>
+<script type="text/javascript">
+var title = "Astarius - Admin Panel";
+document.title = title;
+document.getElementById("yetkili").classList.add('active');
+</script>
+  <section class="section is-medium is-primary has-text-centered is-long">
+<div class="container">
+	<div class="jumbotron">
+		<div align="center">
+      <form method="POST">
+      <input type="text" id="sertifika-red-sebep" name="sertifika-red-sebep" placeholder="Sertifika iptal sebebini yaz." required>
+   
+        <button class="btn btn-danger" type="sumbit">Sertifika İşemini İptal Et</button>
+      </form>
+    </div>
+</div>
+</div>
+</div>
+</section>
+<br><br><br><br>
+<% include ./ek/footer %>
